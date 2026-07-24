@@ -1,0 +1,154 @@
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-20px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes gridMove{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(70px);
+
+}
+
+}
+
+@keyframes pulse{
+
+0%{
+
+box-shadow:0 0 0 0 #30ff74;
+
+}
+
+70%{
+
+box-shadow:0 0 0 12px transparent;
+
+}
+
+100%{
+
+box-shadow:0 0 0 0 transparent;
+
+}
+
+}
+
+@keyframes floatCard{
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+@keyframes scroll{
+
+100%{
+
+transform:translate(-50%,22px);
+
+opacity:0;
+
+}
+
+}
+
+@keyframes particleFloat{
+
+50%{
+
+transform:translateY(-30px);
+
+opacity:.3;
+
+}
+
+}
+
+.about-left{
+
+animation:leftFade 1.2s ease;
+
+}
+
+.about-right{
+
+animation:rightFade 1.2s ease;
+
+}
+
+@keyframes leftFade{
+
+from{
+
+opacity:0;
+
+transform:translateX(-80px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+@keyframes rightFade{
+
+from{
+
+opacity:0;
+
+transform:translateX(80px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+}
+
+@keyframes rotateOrbit{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}

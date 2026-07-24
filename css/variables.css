@@ -1,0 +1,39 @@
+:root{
+
+--primary:#f6c445;
+
+--primary-light:#ffd86e;
+
+--secondary:#111111;
+
+--dark:#090909;
+
+--card:#171717;
+
+--text:#ffffff;
+
+--text-light:#b5b5b5;
+
+--border:#2b2b2b;
+
+--shadow:0 20px 50px rgba(0,0,0,.4);
+
+--radius:20px;
+
+--transition:.4s ease;
+
+/* Responsive spacing */
+
+--section-space:clamp(90px,10vw,180px);
+
+--card-gap:clamp(20px,3vw,40px);
+
+--content-gap:clamp(30px,5vw,80px);
+
+--radius-lg:32px;
+
+--radius-md:22px;
+
+--radius-sm:16px;
+
+}

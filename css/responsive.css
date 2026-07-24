@@ -1,0 +1,185 @@
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media(max-width:992px){
+
+.navbar{
+
+padding:14px 22px;
+
+}
+
+.nav-links{
+
+display:none;
+
+}
+
+.hire-btn{
+
+display:none;
+
+}
+
+.menu-btn{
+
+display:block;
+
+}
+
+.logo-box{
+
+width:56px;
+height:56px;
+
+font-size:22px;
+
+}
+
+.logo-text h2{
+
+font-size:22px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.header{
+
+padding:18px 0;
+
+}
+
+.navbar{
+
+border-radius:18px;
+
+padding:14px 18px;
+
+}
+
+.logo{
+
+gap:12px;
+
+}
+
+.logo-box{
+
+width:50px;
+height:50px;
+
+font-size:20px;
+
+border-radius:14px;
+
+}
+
+.logo-text h2{
+
+font-size:20px;
+
+}
+
+.logo-text span{
+
+font-size:10px;
+
+letter-spacing:2px;
+
+}
+
+.menu-btn{
+
+font-size:28px;
+
+}
+
+}
+
+@media(max-width:992px){
+
+.hero-container{
+
+flex-direction:column-reverse;
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:clamp(3rem,6vw,4.8rem);
+
+line-height:1.05;
+
+}
+
+.hero-image img{
+
+width:330px;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero p{
+
+margin:auto;
+
+margin-bottom:35px;
+
+}
+
+}
+
+@media(max-width:900px){
+
+.timeline-line{
+
+left:25px;
+
+}
+
+.timeline-box{
+
+width:100%;
+left:0;
+padding-left:80px;
+padding-right:20px;
+text-align:left;
+
+}
+
+.timeline-number{
+
+left:-5px !important;
+right:auto;
+
+}
+
+}
+
+@media(max-width:900px){
+
+    .calculator{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .features{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
