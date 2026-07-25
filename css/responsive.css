@@ -43,6 +43,19 @@ font-size:22px;
 
 }
 
+.nav-links.active{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(20,20,20,.95);
+    padding: 20px;
+    gap: 20px;
+    z-index: 998;
+}
+
 }
 
 @media(max-width:576px){
