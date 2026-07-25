@@ -4,6 +4,27 @@
 
 @media(max-width:992px){
 
+
+* {
+    min-width: 0;
+}
+
+.hero-container,
+.navbar,
+.header,
+.container {
+    max-width: 100%;
+}    
+
+.gradient-border{
+    width: 100%;
+    max-width: 330px;
+}
+
+.services-grid{
+    grid-template-columns: 1fr;
+}
+
 .navbar{
 
 padding:14px 22px;
@@ -196,3 +217,14 @@ right:auto;
 
 }
 
+@media(max-width:992px){
+    .bg-title{
+        font-size: clamp(60px, 18vw, 120px);
+    }
+}
+
+@media(max-width:576px){
+    .bg-title{
+        font-size: clamp(40px, 16vw, 80px);
+    }
+}
