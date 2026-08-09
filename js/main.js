@@ -320,7 +320,7 @@ const extras = document.querySelectorAll(".extras input");
 const totalPrice = document.getElementById("totalPrice");
 const timeline = document.getElementById("timeline");
 
-let websitePrice = 12000;
+let websitePrice = 3000;
 let pagePrice = 0;
 
 websiteCards.forEach((card) => {
@@ -399,9 +399,9 @@ function animatePrice(target) {
 }
 
 function updateTimeline(price) {
-  if (price <= 15000) {
+  if (price <= 5000) {
     timeline.textContent = "Estimated Timeline : 1–2 Weeks";
-  } else if (price <= 30000) {
+  } else if (price <= 10000) {
     timeline.textContent = "Estimated Timeline : 2–4 Weeks";
   } else {
     timeline.textContent = "Estimated Timeline : 4–6 Weeks";
