@@ -219,7 +219,7 @@ const projectData = [
 
     image: "C:\\Users\\USER\\OneDrive\\Desktop\\vykraweb\\assets\\images\\projects-img\\screenshot-1791268681107.png",
 
-    tech: ["HTML", "CSS", "Node.js"],
+    tech: ["HTML", "CSS", "REACT"],
 
     features: [
       "Dashboard UI",
