@@ -210,16 +210,16 @@ const projectData = [
   },
 
   {
-    category: "Dashboard",
+    category: "Interior Design",
 
-    title: "AI Analytics Dashboard",
+    title: "Interior Design Website",
 
     description:
-      "Responsive dashboard with charts, analytics and admin interface.",
+      "Modern interior design website with portfolio, services and contact sections.",
 
-    image: "assets/images/project-5.webp",
+    image: "C:\\Users\\USER\\OneDrive\\Desktop\\vykraweb\\assets\\images\\projects-img\\screenshot-1791268681107.png",
 
-    tech: ["HTML", "CSS", "JavaScript"],
+    tech: ["HTML", "CSS", "Node.js"],
 
     features: [
       "Dashboard UI",
@@ -229,7 +229,7 @@ const projectData = [
       "Dark Mode",
     ],
 
-    live: "",
+    live: "https://chennai-interiors.higgsfield.app/",
 
     github: "https://github.com/vishnukasi",
   },
