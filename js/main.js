@@ -217,8 +217,7 @@ const projectData = [
     description:
       "Modern interior design website with portfolio, services and contact sections.",
 
-    image: "C:\\Users\\USER\\OneDrive\\Desktop\\vykraweb\\assets\\images\\projects-img\\screenshot-1791268681107.png",
-
+    image: "assets/images/projects-img/screenshot-1791268681107.png",
     tech: ["HTML", "CSS", "REACT"],
 
     features: [
