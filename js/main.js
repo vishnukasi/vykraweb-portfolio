@@ -108,131 +108,131 @@ services.forEach((card) => {
 PROJECT MODAL
 ==========================================*/
 
-const projectData = [
-  {
-    category: "Business Website",
+// const projectData = [
+//   {
+//     category: "Business Website",
 
-    title: "Corporate Business Website",
+//     title: "Corporate Business Website",
 
-    description:
-      "A premium business website designed to increase trust, generate leads and create a strong online presence.",
+//     description:
+//       "A premium business website designed to increase trust, generate leads and create a strong online presence.",
 
-    image: "assets/images/projects-img/luxwear.png",
+//     image: "assets/images/projects-img/luxwear.png",
 
-    tech: ["HTML", "CSS", "JavaScript"],
+//     tech: ["HTML", "CSS", "JavaScript"],
 
-    features: [
-      "Responsive Design",
-      "SEO Optimized",
-      "Contact Form",
-      "Modern UI",
-      "Fast Performance",
-    ],
+//     features: [
+//       "Responsive Design",
+//       "SEO Optimized",
+//       "Contact Form",
+//       "Modern UI",
+//       "Fast Performance",
+//     ],
 
-    live: "https://vishnukasi.github.io/FashionWear/",
+//     live: "https://vishnukasi.github.io/FashionWear/",
 
-    github: "https://github.com/vishnukasi",
-  },
+//     github: "https://github.com/vishnukasi",
+//   },
 
-  {
-    category: "Portfolio",
+//   {
+//     category: "Portfolio",
 
-    title: "Personal Portfolio",
+//     title: "Personal Portfolio",
 
-    description:
-      "A modern portfolio website showcasing skills, projects and experience.",
+//     description:
+//       "A modern portfolio website showcasing skills, projects and experience.",
 
-    image: "assets/images/projects-img/portfolioimg.png",
+//     image: "assets/images/projects-img/portfolioimg.png",
 
-    tech: ["HTML", "CSS", "JavaScript"],
+//     tech: ["HTML", "CSS", "JavaScript"],
 
-    features: [
-      "Animated Hero",
-      "Project Gallery",
-      "Responsive Layout",
-      "Contact Form",
-      "Smooth Animations",
-    ],
+//     features: [
+//       "Animated Hero",
+//       "Project Gallery",
+//       "Responsive Layout",
+//       "Contact Form",
+//       "Smooth Animations",
+//     ],
 
-    live: "www.vykraweb.in",
+//     live: "www.vykraweb.in",
 
-    github: "https://github.com/vishnukasi",
-  },
+//     github: "https://github.com/vishnukasi",
+//   },
 
-  {
-    category: "Beauty & Spa",
+//   {
+//     category: "Beauty & Spa",
 
-    title: "Luxury Salon Website",
+//     title: "Luxury Salon Website",
 
-    description:
-      "Elegant salon website with premium branding and online booking.",
+//     description:
+//       "Elegant salon website with premium branding and online booking.",
 
-    image: "assets/images/projects-img/salon.png",
+//     image: "assets/images/projects-img/salon.png",
 
-    tech: ["HTML", "CSS"],
+//     tech: ["HTML", "CSS"],
 
-    features: [
-      "Luxury UI",
-      "Appointment Booking",
-      "Service Showcase",
-      "Gallery",
-      "Responsive Design",
-    ],
+//     features: [
+//       "Luxury UI",
+//       "Appointment Booking",
+//       "Service Showcase",
+//       "Gallery",
+//       "Responsive Design",
+//     ],
 
-    live: "https://vishnukasi.github.io/salon-spa/",
+//     live: "https://vishnukasi.github.io/salon-spa/",
 
-    github: "https://github.com/vishnukasi",
-  },
+//     github: "https://github.com/vishnukasi",
+//   },
 
-  {
-    category: "Restaurant",
+//   {
+//     category: "Restaurant",
 
-    title: "Restaurant Landing Page",
+//     title: "Restaurant Landing Page",
 
-    description:
-      "Restaurant website with menu, reservation and contact sections.",
+//     description:
+//       "Restaurant website with menu, reservation and contact sections.",
 
-    image: "assets/images/projects-img/hotel.png",
+//     image: "assets/images/projects-img/hotel.png",
 
-    tech: ["HTML", "CSS"],
+//     tech: ["HTML", "CSS"],
 
-    features: [
-      "Menu Section",
-      "Reservation",
-      "Location Map",
-      "Responsive Layout",
-      "Modern Design",
-    ],
+//     features: [
+//       "Menu Section",
+//       "Reservation",
+//       "Location Map",
+//       "Responsive Layout",
+//       "Modern Design",
+//     ],
 
-    live: "https://vishnukasi.github.io/Foodies-Restaurant/",
+//     live: "https://vishnukasi.github.io/Foodies-Restaurant/",
 
-    github: "https://github.com/vishnukasi",
-  },
+//     github: "https://github.com/vishnukasi",
+//   },
 
-  {
-    category: "Interior Design",
+//   {
+//     category: "Interior Design",
 
-    title: "Interior Design Website",
+//     title: "Interior Design Website",
 
-    description:
-      "Modern interior design website with portfolio, services and contact sections.",
+//     description:
+//       "Modern interior design website with portfolio, services and contact sections.",
 
-    image: "assets/images/projects-img/screenshot-1791268681107.png",
-    tech: ["HTML", "CSS", "REACT"],
+//     image: "assets/images/projects-img/screenshot-1791268681107.png",
+//     tech: ["HTML", "CSS", "REACT"],
 
-    features: [
-      "Dashboard UI",
-      "Charts",
-      "Responsive Tables",
-      "Analytics",
-      "Dark Mode",
-    ],
+//     features: [
+//       "Dashboard UI",
+//       "Charts",
+//       "Responsive Tables",
+//       "Analytics",
+//       "Dark Mode",
+//     ],
 
-    live: "https://chennai-interiors.higgsfield.app/",
+//     live: "https://chennai-interiors.higgsfield.app/",
 
-    github: "https://github.com/vishnukasi",
-  },
-];
+//     github: "https://github.com/vishnukasi",
+//   },
+// ];
 
 /*==========================================
 OPEN PROJECT MODAL
