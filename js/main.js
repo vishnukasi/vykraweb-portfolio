@@ -1,908 +1,473 @@
+/* ================= MAIN APPLICATION SCRIPT ================= */
+
+// Initialize EmailJS
 (function () {
-  emailjs.init({
-    publicKey: "_92623ObgfDRz2wEd",
-  });
+  if (window.emailjs) {
+    emailjs.init({
+      publicKey: "_92623ObgfDRz2wEd",
+    });
+  }
 })();
 
-const progress = document.querySelector(".progress-bar");
-
-window.addEventListener("scroll", () => {
-  const totalHeight =
-    document.documentElement.scrollHeight - window.innerHeight;
-
-  const percent = (window.scrollY / totalHeight) * 100;
-
-  progress.style.width = percent + "%";
-});
-
-const header = document.querySelector(".header");
-
-window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 40);
-});
-
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.querySelector(".loader").classList.add("hide");
-  }, 2000);
-});
-
-/* ========================================
-   MOBILE MENU
-======================================== */
-
-const menu = document.querySelector(".menu-btn");
-const mobile = document.querySelector(".mobile-menu");
-
-menu.addEventListener("click", () => {
-  mobile.classList.toggle("active");
-
-  menu.classList.toggle("active");
-
-  if (menu.classList.contains("active")) {
-    menu.innerHTML = "×";
-  } else {
-    menu.innerHTML = "☰";
-  }
-});
-/* CLOSE MOBILE MENU AFTER CLICK */
-
-document.querySelectorAll(".mobile-menu a").forEach((link) => {
-  link.addEventListener("click", () => {
-    mobile.classList.remove("active");
-
-    menu.classList.remove("active");
-
-    menu.innerHTML = "☰";
-  });
-});
-
-const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
+// Project Showcase Dataset
+const projectData = [
+  {
+    id: "fashionwear",
+    category: "business",
+    categoryName: "Business & Fashion",
+    title: "FashionWear Corporate Website",
+    description: "A high-performance modern business website for a luxury fashion brand with responsive product showcase, appointment booking, and conversion-optimized landing structure.",
+    image: "assets/images/projects-img/corporate.png",
+    tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "SEO"],
+    features: [
+      "100% Mobile Responsive across all devices",
+      "Interactive Product Grid & Lookbook Showcase",
+      "Lead Generation & Contact Inquiries",
+      "Smooth CSS Micro-Interactions",
+      "Optimized Core Web Vitals (<1s load time)"
+    ],
+    live: "https://vishnukasi.github.io/FashionWear/",
+    github: "https://github.com/vishnukasi/FashionWear"
   },
   {
-    threshold: 0.15,
+    id: "vykraweb",
+    category: "portfolio",
+    categoryName: "Portfolio & Studio",
+    title: "VYKRA Web Studio Portfolio",
+    description: "A modern agency portfolio featuring a dynamic pricing calculator, interactive bento showcase, quotation PDF generation, and automated inquiry workflow.",
+    image: "assets/images/projects-img/www.vykraweb.in_ (1).png",
+    tech: ["HTML5", "Modern CSS", "JavaScript ES6+", "EmailJS", "jsPDF"],
+    features: [
+      "Interactive Instant Website Cost Estimator",
+      "Automated PDF Quotation Generator",
+      "Direct WhatsApp Business API Integration",
+      "Responsive, accessible layouts",
+      "Animated project filtering and detail modals"
+    ],
+    live: "https://www.vykraweb.in/",
+    github: "https://github.com/vishnukasi"
   },
-);
+  {
+    id: "salon",
+    category: "beauty",
+    categoryName: "Luxury & Wellness",
+    title: "Luxury Salon & Spa Website",
+    description: "An elegant, visually rich web experience for a premium beauty salon and wellness center, featuring service catalogues, treatment menus, and online reservation capture.",
+    image: "assets/images/projects-img/salon&spa.png",
+    tech: ["HTML5", "CSS Grid & Flexbox", "JavaScript", "UX Design"],
+    features: [
+      "Luxury Aesthetic with Soft Glassmorphism",
+      "Interactive Services & Treatment Pricing List",
+      "Direct Appointment Booking Call-to-Action",
+      "Customer Review & Testimonial Sliders",
+      "Mobile-First Touch Interactions"
+    ],
+    live: "https://vishnukasi.github.io/salon-spa/",
+    github: "https://github.com/vishnukasi/salon-spa"
+  },
+  {
+    id: "restaurant",
+    category: "landing",
+    categoryName: "Food & Hospitality",
+    title: "Foodies Restaurant Landing Page",
+    description: "A vibrant, mouth-watering restaurant landing page with interactive food menu tabs, table reservation form, location maps, and chef specials presentation.",
+    image: "assets/images/projects-img/restaurent.png",
+    tech: ["HTML5", "CSS3", "JavaScript", "Animation"],
+    features: [
+      "Interactive Categorized Dining Menu",
+      "Online Table Reservation System",
+      "Chef Specials Highlight Cards",
+      "Google Maps Location Integration",
+      "Fast Visual Asset Optimization"
+    ],
+    live: "https://vishnukasi.github.io/Foodies-Restaurant/",
+    github: "https://github.com/vishnukasi/Foodies-Restaurant"
+  },
+  {
+    id: "interiors",
+    category: "interior",
+    categoryName: "Architecture & Design",
+    title: "Chennai Interiors Studio",
+    description: "A sleek, minimalist digital portfolio for an interior design and architecture firm, highlighting completed residential and commercial projects with modern aesthetics.",
+    image: "assets/images/projects-img/Screenshot_6-10-2026_12146_chennai-interiors.higgsfield.app.jpeg",
+    tech: ["HTML5", "CSS3", "JavaScript", "Node.js"],
+    features: [
+      "Full-Width High-Resolution Project Gallery",
+      "Before & After Renovation Highlights",
+      "Consultation Booking & Estimate Calculator",
+      "Minimalist Dark Architectural Typography",
+      "SEO Structured Data for Local Chennai Business"
+    ],
+    live: "https://chennai-interiors.higgsfield.app/",
+    github: "https://github.com/vishnukasi"
+  },
+  {
+    id: "sensoria-spa",
+    category: "beauty",
+    categoryName: "Beauty & Wellness",
+    title: "Sensoria Spa & Salon",
+    description: "A polished digital experience for a women-only spa and beauty studio in Arumbakkam, Chennai, with clear service discovery and a direct appointment journey.",
+    image: "assets/images/projects-img/sensoria-preview.jpg",
+    tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Booking"],
+    features: [
+      "Women-only luxury spa and salon showcase",
+      "Service discovery for beauty and wellness treatments",
+      "Appointment booking calls to action",
+      "Responsive experience for mobile visitors"
+    ],
+    live: "https://cerulean-paprenjak-44f2a8.netlify.app/",
+    github: "https://github.com/vishnukasi"
+  },
+  {
+    id: "serenity-spa",
+    category: "beauty",
+    categoryName: "Beauty & Wellness",
+    title: "Serenity — Luxury Salon & Spa",
+    description: "An editorial, boutique-inspired salon and spa website featuring signature treatments, immersive imagery, and a streamlined appointment experience.",
+    image: "assets/images/projects-img/serenity-preview.png",
+    tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Booking"],
+    features: [
+      "Luxury salon and spa brand presentation",
+      "Signature treatments and experiences",
+      "Immersive editorial imagery",
+      "Mobile-friendly appointment journey"
+    ],
+    live: "https://inquisitive-florentine-452604.netlify.app/",
+    github: "https://github.com/vishnukasi"
+  }
+];
 
-reveals.forEach((el) => {
-  observer.observe(el);
+document.addEventListener("DOMContentLoaded", () => {
+  initLoader();
+  initHeaderScroll();
+  initMobileDrawer();
+  initProjectFilters();
+  initProjectModal();
+  initFaqAccordion();
+  initContactForm();
+  updateFooterYear();
 });
 
-const dot = document.querySelector(".cursor");
+/* ================= 1. PAGE LOADER ================= */
+function initLoader() {
+  const loader = document.querySelector(".loader");
+  if (!loader) return;
 
-const ring = document.querySelector(".cursor-ring");
+  function hideLoader() {
+    loader.classList.add("hide");
+    setTimeout(() => {
+      loader.remove();
+    }, 600);
+  }
 
-window.addEventListener("mousemove", (e) => {
-  dot.style.left = e.clientX + "px";
-  dot.style.top = e.clientY + "px";
+  // Hide on window load, or after 1.5s fallback
+  window.addEventListener("load", () => {
+    setTimeout(hideLoader, 600);
+  });
 
-  ring.style.left = e.clientX + "px";
-  ring.style.top = e.clientY + "px";
-});
+  setTimeout(hideLoader, 1800);
+}
 
-const services = document.querySelectorAll(".service-card");
+/* ================= 2. HEADER SCROLL EFFECT ================= */
+function initHeaderScroll() {
+  const header = document.querySelector(".header");
+  if (!header) return;
 
-services.forEach((card) => {
-  const btn = card.querySelector(".toggle-service");
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 30);
+  });
+}
 
-  btn.addEventListener("click", () => {
-    services.forEach((item) => {
-      if (item !== card) {
-        item.classList.remove("active");
+/* ================= 3. MOBILE MENU DRAWER ================= */
+function initMobileDrawer() {
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const drawer = document.querySelector(".mobile-drawer");
+  const drawerLinks = document.querySelectorAll(".mobile-drawer-link, .mobile-drawer-cta");
+
+  if (!toggleBtn || !drawer) return;
+
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = drawer.classList.toggle("open");
+    toggleBtn.setAttribute("aria-expanded", isOpen);
+    toggleBtn.innerHTML = isOpen
+      ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>`
+      : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+  });
+
+  // Close when clicking any nav link
+  drawerLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      drawer.classList.remove("open");
+      toggleBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (drawer.classList.contains("open") && !drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
+      drawer.classList.remove("open");
+      toggleBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+    }
+  });
+}
+
+/* ================= 4. PROJECT FILTER TABS ================= */
+function initProjectFilters() {
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-item-card");
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.getAttribute("data-filter");
+
+      projectCards.forEach((card) => {
+        const category = card.getAttribute("data-category");
+        if (filter === "all" || category === filter) {
+          card.classList.remove("hidden");
+          card.style.opacity = "0";
+          card.style.transform = "translateY(20px)";
+          setTimeout(() => {
+            card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, 50);
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+    });
+  });
+}
+
+/* ================= 5. PROJECT DETAILS MODAL ================= */
+function initProjectModal() {
+  const modal = document.getElementById("projectModal");
+  if (!modal) return;
+
+  const closeBtn = modal.querySelector(".modal-close-btn");
+  const modalImg = document.getElementById("modalImage");
+  const modalCategory = document.getElementById("modalCategory");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDescription");
+  const modalTech = document.getElementById("modalTech");
+  const modalFeatures = document.getElementById("modalFeatures");
+  const liveBtn = document.getElementById("modalLiveBtn");
+  const githubBtn = document.getElementById("modalGithubBtn");
+
+  // Open buttons
+  document.querySelectorAll("[data-project-index]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const index = parseInt(btn.getAttribute("data-project-index"), 10);
+      const project = projectData[index];
+      if (!project) return;
+
+      modalImg.src = project.image;
+      modalImg.alt = project.title;
+      modalCategory.textContent = project.categoryName;
+      modalTitle.textContent = project.title;
+      modalDesc.textContent = project.description;
+
+      // Tech Badges
+      modalTech.innerHTML = project.tech
+        .map((t) => `<span class="tech-badge">${t}</span>`)
+        .join("");
+
+      // Key Deliverables
+      modalFeatures.innerHTML = project.features
+        .map((f) => `<li>${f}</li>`)
+        .join("");
+
+      // Buttons
+      liveBtn.href = project.live;
+      githubBtn.href = project.github;
+
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeModal);
+  }
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      closeModal();
+    }
+  });
+}
+
+/* ================= 6. FAQ ACCORDION ================= */
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item) => {
+    const questionBtn = item.querySelector(".faq-question-btn");
+    questionBtn.addEventListener("click", () => {
+      const isActive = item.classList.contains("active");
+
+      // Close all others
+      faqItems.forEach((other) => other.classList.remove("active"));
+
+      // Toggle clicked
+      if (!isActive) {
+        item.classList.add("active");
       }
     });
-
-    card.classList.toggle("active");
   });
-});
-
-/*==========================================
-PROJECT MODAL
-==========================================*/
-
-// const projectData = [
-//   {
-//     category: "Business Website",
-
-//     title: "Corporate Business Website",
-
-//     description:
-//       "A premium business website designed to increase trust, generate leads and create a strong online presence.",
-
-//     image: "assets/images/projects-img/luxwear.png",
-
-//     tech: ["HTML", "CSS", "JavaScript"],
-
-//     features: [
-//       "Responsive Design",
-//       "SEO Optimized",
-//       "Contact Form",
-//       "Modern UI",
-//       "Fast Performance",
-//     ],
-
-//     live: "https://vishnukasi.github.io/FashionWear/",
-
-//     github: "https://github.com/vishnukasi",
-//   },
-
-//   {
-//     category: "Portfolio",
-
-//     title: "Personal Portfolio",
-
-//     description:
-//       "A modern portfolio website showcasing skills, projects and experience.",
-
-//     image: "assets/images/projects-img/portfolioimg.png",
-
-//     tech: ["HTML", "CSS", "JavaScript"],
-
-//     features: [
-//       "Animated Hero",
-//       "Project Gallery",
-//       "Responsive Layout",
-//       "Contact Form",
-//       "Smooth Animations",
-//     ],
-
-//     live: "www.vykraweb.in",
-
-//     github: "https://github.com/vishnukasi",
-//   },
-
-//   {
-//     category: "Beauty & Spa",
-
-//     title: "Luxury Salon Website",
-
-//     description:
-//       "Elegant salon website with premium branding and online booking.",
-
-//     image: "assets/images/projects-img/salon.png",
-
-//     tech: ["HTML", "CSS"],
-
-//     features: [
-//       "Luxury UI",
-//       "Appointment Booking",
-//       "Service Showcase",
-//       "Gallery",
-//       "Responsive Design",
-//     ],
-
-//     live: "https://vishnukasi.github.io/salon-spa/",
-
-//     github: "https://github.com/vishnukasi",
-//   },
-
-//   {
-//     category: "Restaurant",
-
-//     title: "Restaurant Landing Page",
-
-//     description:
-//       "Restaurant website with menu, reservation and contact sections.",
-
-//     image: "assets/images/projects-img/hotel.png",
-
-//     tech: ["HTML", "CSS"],
-
-//     features: [
-//       "Menu Section",
-//       "Reservation",
-//       "Location Map",
-//       "Responsive Layout",
-//       "Modern Design",
-//     ],
-
-//     live: "https://vishnukasi.github.io/Foodies-Restaurant/",
-
-//     github: "https://github.com/vishnukasi",
-//   },
-
-//   {
-//     category: "Interior Design",
-
-//     title: "Interior Design Website",
-
-//     description:
-//       "Modern interior design website with portfolio, services and contact sections.",
-
-//     image: "assets/images/projects-img/screenshot-1791268681107.png",
-//     tech: ["HTML", "CSS", "REACT"],
-
-//     features: [
-//       "Dashboard UI",
-//       "Charts",
-//       "Responsive Tables",
-//       "Analytics",
-//       "Dark Mode",
-//     ],
-
-//     live: "https://chennai-interiors.higgsfield.app/",
-
-//     github: "https://github.com/vishnukasi",
-//   },
-// ];
-
-/*==========================================
-OPEN PROJECT MODAL
-==========================================*/
-
-const modal = document.getElementById("projectModal");
-
-const modalImage = document.getElementById("modalImage");
-
-const modalCategory = document.getElementById("modalCategory");
-
-const modalTitle = document.getElementById("modalTitle");
-
-const modalDescription = document.getElementById("modalDescription");
-
-const modalTech = document.getElementById("modalTech");
-
-const modalFeatures = document.getElementById("modalFeatures");
-
-const liveDemo = document.getElementById("liveDemo");
-
-const githubRepo = document.getElementById("githubRepo");
-
-const closeModal = document.querySelector(".close-modal");
-
-const buttons = document.querySelectorAll(".view-project");
-
-buttons.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    const project = projectData[index];
-
-    modal.classList.add("active");
-
-    modalImage.src = project.image;
-
-    modalCategory.textContent = project.category;
-
-    modalTitle.textContent = project.title;
-
-    modalDescription.textContent = project.description;
-
-    modalTech.innerHTML = "";
-
-    project.tech.forEach((item) => {
-      modalTech.innerHTML += `<span>${item}</span>`;
-    });
-
-    modalFeatures.innerHTML = "";
-
-    project.features.forEach((item) => {
-      modalFeatures.innerHTML += `<li>${item}</li>`;
-    });
-
-    liveDemo.href = project.live;
-
-    githubRepo.href = project.github;
-  });
-});
-
-closeModal.addEventListener("click", () => {
-  modal.classList.remove("active");
-});
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("active");
-  }
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    modal.classList.remove("active");
-  }
-});
-
-/*==========================================
-MODERN PRICING CALCULATOR
-==========================================*/
-
-const websiteCards = document.querySelectorAll(".option-card");
-const pageCards = document.querySelectorAll(".page-card");
-const extras = document.querySelectorAll(".extras input");
-
-const totalPrice = document.getElementById("totalPrice");
-const timeline = document.getElementById("timeline");
-
-let websitePrice = 3000;
-let pagePrice = 0;
-
-websiteCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    websiteCards.forEach((c) => c.classList.remove("active"));
-
-    card.classList.add("active");
-
-    websitePrice = Number(card.dataset.price);
-
-    calculatePrice();
-  });
-});
-
-pageCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    pageCards.forEach((c) => c.classList.remove("active"));
-
-    card.classList.add("active");
-
-    pagePrice = Number(card.dataset.pages);
-
-    calculatePrice();
-  });
-});
-
-extras.forEach((item) => {
-  item.addEventListener("change", calculatePrice);
-});
-
-function calculatePrice() {
-  let total = websitePrice + pagePrice;
-
-  extras.forEach((item) => {
-    if (item.checked) {
-      total += Number(item.value);
+}
+
+/* ================= 7. CONTACT FORM & EMAILJS ================= */
+function initContactForm() {
+  const form = document.getElementById("contactForm");
+  const directWhatsAppBtn = document.getElementById("directWhatsAppBtn");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span>Sending inquiry...</span>`;
+
+    const clientData = {
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      company: document.getElementById("company") ? document.getElementById("company").value.trim() : "",
+      website_type: document.getElementById("summaryType") ? document.getElementById("summaryType").textContent : "Website",
+      pages: document.getElementById("summaryPages") ? document.getElementById("summaryPages").textContent : "Standard",
+      features: document.getElementById("summaryFeatures") ? document.getElementById("summaryFeatures").innerText.replace(/\n/g, ", ") : "",
+      price: document.getElementById("summaryPrice") ? document.getElementById("summaryPrice").textContent : "₹3,000",
+      timeline: document.getElementById("summaryTimeline") ? document.getElementById("summaryTimeline").textContent : "1–2 Weeks",
+      message: document.getElementById("message").value.trim()
+    };
+
+    window.latestClientInquiry = clientData;
+
+    // Send via EmailJS if available
+    if (window.emailjs) {
+      emailjs
+        .send("service_n88arid", "template_je9l4lj", clientData)
+        .then(() => {
+          showToast("Inquiry sent successfully! Vishnu will reply within 24 hours 🚀");
+          showSuccessModal(clientData);
+          form.reset();
+        })
+        .catch((err) => {
+          console.warn("EmailJS note:", err);
+          showToast("Inquiry received! Click below to send a copy to WhatsApp directly.");
+          showSuccessModal(clientData);
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        });
+    } else {
+      showSuccessModal(clientData);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
     }
   });
 
-  animatePrice(total);
-
-  updateTimeline(total);
-
-  const estimate = document.querySelector(".estimate");
-
-  estimate.classList.add("active");
-
-  setTimeout(() => {
-    estimate.classList.remove("active");
-  }, 700);
-}
-
-function animatePrice(target) {
-  let current = Number(totalPrice.textContent.replace(/[₹,]/g, "")) || 0;
-
-  const increment = (target - current) / 25;
-
-  const timer = setInterval(() => {
-    current += increment;
-
-    if (
-      (increment > 0 && current >= target) ||
-      (increment < 0 && current <= target)
-    ) {
-      current = target;
-
-      clearInterval(timer);
-    }
-
-    totalPrice.textContent =
-      "₹" +
-      Math.round(current)
-
-        .toLocaleString("en-IN");
-  }, 15);
-}
-
-function updateTimeline(price) {
-  if (price <= 5000) {
-    timeline.textContent = "Estimated Timeline : 1–2 Weeks";
-  } else if (price <= 10000) {
-    timeline.textContent = "Estimated Timeline : 2–4 Weeks";
-  } else {
-    timeline.textContent = "Estimated Timeline : 4–6 Weeks";
-  }
-}
-
-/*==========================================*
- *QUOTE POPUP + PDF GENERATOR*
- *==========================================*/
-
-const quotePopup = document.getElementById("quotePopup");
-
-const quoteBtn = document.getElementById("quoteBtn");
-
-const closeQuote = document.querySelector(".close-quote");
-
-const downloadQuote = document.getElementById("downloadQuote");
-
-let quoteData = {
-  website: "",
-  price: 0,
-  pages: "",
-  features: [],
-  timeline: "",
-  quoteID: "",
-};
-
-// Generate Quote ID
-
-function generateQuoteID() {
-  let date = new Date();
-
-  return (
-    "VYKRA-" +
-    date.getFullYear() +
-    (date.getMonth() + 1) +
-    date.getDate() +
-    "-" +
-    Math.floor(Math.random() * 900 + 100)
-  );
-}
-
-// OPEN QUOTE POPUP
-
-quoteBtn.addEventListener("click", () => {
-  // Website name
-
-  let website = document.querySelector(".option-card.active h4").textContent;
-
-  // Website price
-
-  let price = Number(
-    document.querySelector(".option-card.active").dataset.price,
-  );
-
-  // Pages
-
-  let pages = document.querySelector(".page-card.active").textContent;
-
-  // Features
-
-  let selectedFeatures = [];
-
-  document.querySelectorAll(".extras input:checked").forEach((item) => {
-    selectedFeatures.push(item.parentElement.textContent.trim());
-  });
-
-  // Timeline
-
-  let time = timeline.textContent.replace("Estimated Timeline : ", "");
-
-  quoteData = {
-    website: website,
-
-    price: Number(totalPrice.textContent.replace(/[₹,]/g, "")),
-
-    pages: pages,
-
-    features: selectedFeatures,
-
-    timeline: time,
-
-    quoteID: generateQuoteID(),
-  };
-
-  quotePopup.classList.add("active");
-});
-
-// CLOSE POPUP
-
-closeQuote.addEventListener("click", () => {
-  quotePopup.classList.remove("active");
-});
-
-quotePopup.addEventListener("click", (e) => {
-  if (e.target === quotePopup) {
-    quotePopup.classList.remove("active");
-  }
-});
-
-/*==========================================
-DOWNLOAD QUOTATION PDF
-==========================================*/
-
-const downloadBtn = document.getElementById("downloadQuote");
-
-downloadBtn.addEventListener("click", generateQuotation);
-
-function generateQuotation() {
-  const { jsPDF } = window.jspdf;
-
-  const doc = new jsPDF();
-
-  const today = new Date();
-
-  const date = today.toLocaleDateString("en-IN");
-
-  const quoteNo =
-    "VYKRA-" +
-    today.getFullYear() +
-    (today.getMonth() + 1).toString().padStart(2, "0") +
-    today.getDate().toString().padStart(2, "0") +
-    "-" +
-    Math.floor(Math.random() * 900 + 100);
-
-  const website = document.querySelector(".option-card.active h4").textContent;
-
-  const pages = document.querySelector(".page-card.active").textContent;
-
-  const rawPrice = Number(totalPrice.textContent.replace(/[₹,]/g, ""));
-
-  const price = "Rs. " + rawPrice.toLocaleString("en-IN");
-
-  const time = timeline.textContent;
-
-  const features = [];
-
-  document.querySelectorAll(".extras input:checked").forEach((item) => {
-    features.push(item.parentElement.textContent.trim());
-  });
-
-  /* ---------- HEADER ---------- */
-
-  doc.setFillColor(15, 23, 42);
-  doc.rect(0, 0, 210, 38, "F");
-
-  doc.setTextColor(255);
-
-  doc.setFontSize(24);
-  doc.setFont("helvetica", "bold");
-  doc.text("VYKRA WEB STUDIO", 20, 18);
-
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text("Website Development Quotation", 20, 28);
-
-  doc.setTextColor(0);
-
-  /* ---------- Quote Info ---------- */
-
-  doc.setFillColor(245, 245, 245);
-  doc.roundedRect(15, 45, 180, 25, 4, 4, "F");
-
-  doc.setFontSize(11);
-
-  doc.text("Quote ID : " + quoteNo, 22, 56);
-
-  doc.text("Date : " + date, 22, 64);
-
-  /* ---------- Project ---------- */
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(15);
-
-  doc.text("PROJECT DETAILS", 20, 84);
-
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(12);
-
-  doc.text("Website Type : " + website, 20, 96);
-
-  doc.text("Pages : " + pages, 20, 106);
-
-  doc.text(time, 20, 116);
-
-  /* ---------- Features ---------- */
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(15);
-
-  doc.text("FEATURES", 20, 138);
-
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(12);
-
-  let y = 148;
-
-  if (features.length === 0) {
-    doc.text("No extra features selected.", 25, y);
-
-    y += 10;
-  } else {
-    features.forEach((feature) => {
-      doc.text(". " + feature, 25, y);
-
-      y += 8;
+  // Direct WhatsApp from contact form
+  if (directWhatsAppBtn) {
+    directWhatsAppBtn.addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim() || "Client";
+      const message = document.getElementById("message").value.trim() || "I would like to discuss a new website project.";
+      const waMsg = `Hi Vishnu! My name is ${name}. ${message}`;
+      window.open(`https://wa.me/917904753462?text=${encodeURIComponent(waMsg)}`, "_blank");
     });
   }
-
-  /* ---------- Price Box ---------- */
-
-  y += 10;
-
-  doc.setFillColor(0, 224, 255);
-
-  doc.roundedRect(20, y, 170, 28, 5, 5, "F");
-
-  doc.setFont("helvetica", "bold");
-
-  doc.setFontSize(14);
-
-  doc.setTextColor(0);
-
-  doc.text("Estimated Investment", 30, y + 10);
-
-  doc.setFontSize(22);
-
-  doc.text(price, 30, y + 22);
-
-  /* ---------- Terms ---------- */
-
-  y += 45;
-
-  doc.setTextColor(0);
-
-  doc.setFontSize(15);
-
-  doc.setFont("helvetica", "bold");
-
-  doc.text("Terms & Conditions", 20, y);
-
-  y += 10;
-
-  doc.setFont("helvetica", "normal");
-
-  doc.setFontSize(11);
-
-  doc.text("• 50% advance payment to begin development.", 25, y);
-
-  y += 7;
-
-  doc.text("• Hosting & domain charges are separate.", 25, y);
-
-  y += 7;
-
-  doc.text("• Final pricing depends on project scope.", 25, y);
-
-  y += 7;
-
-  doc.text("• Free support after project delivery.", 25, y);
-
-  /* ---------- Footer ---------- */
-
-  doc.setFillColor(15, 23, 42);
-
-  doc.rect(0, 280, 210, 17, "F");
-
-  doc.setTextColor(255);
-
-  doc.setFontSize(10);
-
-  doc.text("www.vykraweb.in", 20, 289);
-
-  doc.text("contact@vykraweb.in", 150, 289);
-
-  doc.save("VYKRA-Quotation.pdf");
 }
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+function showSuccessModal(data) {
+  const successModal = document.getElementById("successModal");
+  if (!successModal) return;
 
-  const clientData = {
-    name: document.getElementById("name").value.trim(),
-
-    email: document.getElementById("email").value.trim(),
-
-    phone: document.getElementById("phone").value.trim(),
-
-    company: document.getElementById("company").value.trim(),
-
-    website: document.getElementById("summaryType").innerText,
-
-    pages: document.getElementById("summaryPages").innerText,
-
-    features: "SEO, WhatsApp Integration, Contact Form",
-
-    price: document.getElementById("summaryPrice").innerText,
-
-    timeline: "2 - 4 Weeks",
-
-    message: document.getElementById("message").value.trim(),
-  };
-
-  /* Store details temporarily */
-
-  window.latestClientData = clientData;
-
-  const params = {
-    name: clientData.name,
-
-    email: clientData.email,
-
-    phone: clientData.phone,
-
-    company: clientData.company,
-
-    website_type: clientData.website,
-
-    pages: clientData.pages,
-
-    features: clientData.features,
-
-    price: clientData.price,
-
-    timeline: clientData.timeline,
-
-    message: clientData.message,
-  };
-
-  emailjs
-    .send(
-      "service_n88arid",
-
-      "template_je9l4lj",
-
-      params,
-    )
-
-    .then(() => {
-      showSuccessPopup();
-
-      showToast("Your inquiry has been sent successfully 🚀");
-
-      document.getElementById("contactForm").reset();
-    })
-
-    .catch((error) => {
-      console.error("EmailJS Error:", error);
-
-      showToast("Unable to send inquiry. Please try again.");
-    });
-});
-
-/* ==========================================
-   SUCCESS POPUP
-========================================== */
-
-const successPopup = document.getElementById("successPopup");
-
-const successClose = document.getElementById("successClose");
-
-const successDismiss = document.getElementById("successDismiss");
-
-const whatsappClientBtn = document.getElementById("whatsappClientBtn");
-
-function showSuccessPopup() {
-  successPopup.classList.add("active");
-}
-
-function closeSuccessPopup() {
-  successPopup.classList.remove("active");
-}
-
-successClose.addEventListener("click", closeSuccessPopup);
-
-successDismiss.addEventListener("click", closeSuccessPopup);
-
-successPopup.addEventListener("click", (e) => {
-  if (e.target === successPopup) {
-    closeSuccessPopup();
+  const clientNameDisplay = document.getElementById("successClientName");
+  if (clientNameDisplay && data.name) {
+    clientNameDisplay.textContent = `Thank you, ${data.name}!`;
   }
-});
 
+  successModal.classList.add("active");
+
+  const closeBtn = successModal.querySelector(".modal-close-btn");
+  const dismissBtn = document.getElementById("dismissSuccessBtn");
+  const waBtn = document.getElementById("successWhatsAppBtn");
+
+  function close() {
+    successModal.classList.remove("active");
+  }
+
+  if (closeBtn) closeBtn.onclick = close;
+  if (dismissBtn) dismissBtn.onclick = close;
+
+  if (waBtn) {
+    waBtn.onclick = () => {
+      const waText = `🚀 *New Project Inquiry - VYKRA Web Studio*
+*Client Name:* ${data.name}
+*Email:* ${data.email}
+*Phone:* ${data.phone}
+*Company:* ${data.company || "N/A"}
+*Package:* ${data.website_type} (${data.pages})
+*Estimated Price:* ${data.price}
+*Requirements:* ${data.message || "Consultation requested."}`;
+
+      window.open(`https://wa.me/917904753462?text=${encodeURIComponent(waText)}`, "_blank");
+      close();
+    };
+  }
+}
+
+/* ================= 8. TOAST NOTIFICATION SYSTEM ================= */
 function showToast(message) {
-  let toast = document.createElement("div");
+  // Remove existing toast if present
+  const existing = document.querySelector(".toast");
+  if (existing) existing.remove();
 
+  const toast = document.createElement("div");
   toast.className = "toast";
-
-  toast.innerHTML = message;
-
+  toast.innerHTML = `
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+    <span>${message}</span>
+  `;
   document.body.appendChild(toast);
 
   setTimeout(() => {
-    toast.remove();
-  }, 3000);
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(20px)";
+    toast.style.transition = "all 0.3s ease";
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
 }
 
-whatsappClientBtn.addEventListener("click", function () {
-  if (!window.latestClientData) {
-    return;
+window.showToast = showToast;
+
+/* ================= 9. DYNAMIC FOOTER YEAR ================= */
+function updateFooterYear() {
+  const yearEl = document.getElementById("footerYear");
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
   }
-
-  const data = window.latestClientData;
-
-  const whatsappMessage = `
-
-🚀 *New Website Inquiry - VYKRA Web Studio*
-
- *Client Name*
-${data.name}
-
- *Email*
-${data.email}
-
- *Phone*
-${data.phone}
-
- *Company*
-${data.company || "Not Provided"}
-
- *Website Type*
-${data.website}
-
- *Pages*
-${data.pages}
-
- *Features*
-${data.features}
-
- *Estimated Price*
-${data.price}
-
- *Timeline*
-${data.timeline}
-
- *Additional Requirements*
-${data.message || "Not Provided"}
-
-━━━━━━━━━━━━━━━━━━
-
-Generated from VYKRA Web Studio
-
-`;
-
-  const yourWhatsAppNumber = "917904753462";
-
-  const whatsappURL =
-    "https://wa.me/" +
-    yourWhatsAppNumber +
-    "?text=" +
-    encodeURIComponent(whatsappMessage);
-
-  window.open(whatsappURL, "_blank");
-});
-
-function continueToContact() {
-  document.getElementById("quotePopup").classList.remove("active");
-
-  // Fill contact section
-
-  document.getElementById("summaryType").innerText = quoteData.website;
-
-  document.getElementById("summaryPages").innerText =
-    quoteData.pages + " Pages";
-
-  document.getElementById("summaryPrice").innerText =
-    "₹" + Number(quoteData.price).toLocaleString("en-IN");
-
-  document.getElementById("message").value = `
-Website Type: ${quoteData.website}
-
-Pages: ${quoteData.pages}
-
-Features:
-${quoteData.features.join(", ")}
-
-Estimated Price:
-₹${quoteData.price}
-
-Timeline:
-${quoteData.timeline}
-`;
-
-  // Scroll to contact
-
-  document.getElementById("contact").scrollIntoView({
-    behavior: "smooth",
-  });
-}
-
-document.querySelectorAll(".input-box input").forEach((input) => {
-  if (input.value != "") {
-    input.classList.add("filled");
-  }
-});
-
-/* ========================================
-   FOOTER YEAR
-========================================= */
-
-const footerYear = document.getElementById("footerYear");
-
-if (footerYear) {
-  footerYear.textContent = new Date().getFullYear();
 }

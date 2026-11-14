@@ -1,85 +1,86 @@
-:root{
+:root {
+  /* ================= COLOR PALETTE ================= */
+  --bg: #0b0b0b;
+  --bg-secondary: #131313;
+  --surface: #171717;
+  --surface-card: rgba(24, 24, 24, 0.94);
+  --surface-card-hover: #202020;
+  --surface-glass: rgba(255, 255, 255, 0.045);
+  --surface-glass-hover: rgba(255, 255, 255, 0.09);
 
-/* Colors */
+  --border: rgba(255, 255, 255, 0.09);
+  --border-light: rgba(255, 255, 255, 0.16);
+  --border-accent: rgba(255, 90, 10, 0.5);
+  --border-glow: rgba(255, 90, 10, 0.7);
 
---bg:#050505;
+  --text: #f7f5f2;
+  --text-muted: #aaa6a2;
+  --text-dim: #77736f;
+  --text-light: #d7d3cf;
 
---surface:#101010;
+  /* Accent Colors */
+  --primary: #ff5a0a;
+  --primary-rgb: 255, 90, 10;
+  --primary-glow: rgba(255, 90, 10, 0.3);
+  --secondary: #c83217;
+  --secondary-rgb: 200, 50, 23;
+  --secondary-glow: rgba(200, 50, 23, 0.26);
+  --accent-cyan: #6a9b9a;
+  --accent-purple: #a67895;
+  --accent-green: #6ca579;
+  --accent-amber: #f4a239;
+  --accent-pink: #db7385;
 
---surface-2:#181818;
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #ff7623 0%, #ff4b00 100%);
+  --gradient-text: linear-gradient(135deg, #ff8a36 5%, #ff4d0a 75%, #d93618 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(255, 90, 10, 0.2) 0%, rgba(200, 50, 23, 0.18) 100%);
+  --gradient-dark: linear-gradient(180deg, rgba(22, 22, 22, 0.85) 0%, rgba(11, 11, 11, 0.98) 100%);
+  --gradient-card: linear-gradient(145deg, rgba(34, 34, 34, 0.96) 0%, rgba(19, 19, 19, 0.96) 100%);
 
---border:rgba(255,255,255,.08);
+  /* ================= FONTS ================= */
+  --heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'JetBrains Mono', 'Fira Code', monospace;
 
---text:#ffffff;
+  /* ================= RADIUS ================= */
+  --radius-xs: 8px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 36px;
+  --radius-full: 9999px;
 
---text-light:#c7c7c7;
+  /* ================= SHADOWS ================= */
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 14px 34px rgba(0, 0, 0, 0.36);
+  --shadow-lg: 0 26px 64px rgba(0, 0, 0, 0.46);
+  --shadow-glow: 0 0 38px rgba(255, 90, 10, 0.2);
+  --shadow-glow-purple: 0 0 40px rgba(200, 50, 23, 0.16);
 
---primary:#00E0FF;
+  /* ================= LAYOUT ================= */
+  --container: 1280px;
+  --header-height: 80px;
 
---secondary:#6C5CE7;
+  /* ================= TRANSITIONS ================= */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-smooth);
+  --transition: 0.35s var(--ease-smooth);
+  --transition-slow: 0.6s var(--ease-smooth);
 
---success:#3DFF7A;
+  /* Fluid Spacing */
+  --space-xs: clamp(0.5rem, 0.8vw, 0.8rem);
+  --space-sm: clamp(0.8rem, 1.2vw, 1.2rem);
+  --space-md: clamp(1.4rem, 2vw, 2rem);
+  --space-lg: clamp(2.5rem, 4vw, 4rem);
+  --space-xl: clamp(4.5rem, 7vw, 7rem);
 
-
-/* Fonts */
-
---heading:'Space Grotesk',sans-serif;
-
---body:'Inter',sans-serif;
-
-
-/* Radius */
-
---radius-sm:12px;
-
---radius-md:20px;
-
---radius-lg:32px;
-
---radius-full:999px;
-
-
-/* Shadow */
-
---shadow:
-0 20px 60px rgba(0,0,0,.35);
-
-
-/* Container */
-
---container:1400px;
-
-
-/* Transition */
-
---transition:.35s ease;
-
-
-/* Fluid Spaces */
-
---space-xs:clamp(.5rem,.7vw,.8rem);
-
---space-sm:clamp(.8rem,1vw,1rem);
-
---space-md:clamp(1.2rem,1.6vw,1.6rem);
-
---space-lg:clamp(2rem,3vw,3rem);
-
---space-xl:clamp(4rem,6vw,6rem);
-
---space-2xl:clamp(6rem,9vw,9rem);
-
-
-/* Typography */
-
---fs-small:clamp(.85rem,1vw,.95rem);
-
---fs-body:clamp(1rem,1.3vw,1.1rem);
-
---fs-h3:clamp(1.5rem,2vw,2rem);
-
---fs-h2:clamp(2.2rem,4vw,4rem);
-
---fs-hero:clamp(3rem,8vw,6.5rem);
-
+  /* Fluid Typography */
+  --fs-xs: clamp(0.75rem, 0.85vw, 0.85rem);
+  --fs-sm: clamp(0.85rem, 1vw, 0.95rem);
+  --fs-body: clamp(0.98rem, 1.15vw, 1.08rem);
+  --fs-h4: clamp(1.2rem, 1.5vw, 1.45rem);
+  --fs-h3: clamp(1.5rem, 2.2vw, 2rem);
+  --fs-h2: clamp(2rem, 3.6vw, 3.2rem);
+  --fs-hero: clamp(2.6rem, 5.5vw, 4.8rem);
 }
