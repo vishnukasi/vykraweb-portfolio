@@ -25,7 +25,7 @@ const projectData = [
       "Boutique located in Anna Nagar, Chennai"
     ],
     live: "https://hilarious-lamington-d35e36.netlify.app/",
-    github: "https://github.com/vishnukasi/FashionWear"
+
   },
   {
     id: "vykraweb",
